@@ -6,9 +6,19 @@
 # http://doc.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from scrapy import Field
 
-
-class SpiderItem(scrapy.Item):
+class MovieItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    dna        = Field()
+    name       = Field()
+    alias      = Field()
+    show_time  = Field()
+    director   = Field()
+    actor      = Field()
+    country    = Field()
+    movie_type = Field()
+    brief      = Field()
+    url        = Field()
+

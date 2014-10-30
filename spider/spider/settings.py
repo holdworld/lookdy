@@ -15,3 +15,12 @@ NEWSPIDER_MODULE = 'spider.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'spider (+http://www.yourdomain.com)'
+
+#random delay [1,2] second down
+DOWNLOAD_DELAY = 2
+RANDOMIZE_DOWNLOAD_DELAY = True
+
+DOWNLOADER_MIDDLEWARES = {
+	'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware':None,
+	'spider.fake_agent.FakeAgent':400
+}
