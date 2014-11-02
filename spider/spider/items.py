@@ -14,6 +14,7 @@ class MovieItem(scrapy.Item):
     dna        = Field()
     name       = Field()
     alias      = Field()
+    type       = Field()
     show_time  = Field()
     director   = Field()
     actor      = Field()
