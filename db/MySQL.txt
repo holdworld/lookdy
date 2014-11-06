@@ -1,7 +1,7 @@
 使用以下sql语句创建数据库及对应的表
 create database lookdy;
 
-CREATE TABLE movie(dna VARCHAR(64) not null primary key, name VARCHAR(100) not null, alias VARCHAR(100), show_time  VARCHAR(50), director VARCHAR(50), actor VARCHAR(255), country VARCHAR(20),movie_type INT,brief TEXT);
+CREATE TABLE movie(dna VARCHAR(64) not null primary key, name VARCHAR(100) not null, alias VARCHAR(100), show_time  VARCHAR(50), director VARCHAR(50), actor VARCHAR(255), country VARCHAR(20),movie_type VARCHAR(50),url VARCHAR(255),brief TEXT);
 
 CREATE TABLE play(dna  VARCHAR(64) not null, url  VARCHAR(255) not null, primary key(dna,url), play_type  TINYINT,duration INT,language VARCHAR(20), size VARCHAR(20));
 
@@ -9,7 +9,6 @@ CREATE TABLE play(dna  VARCHAR(64) not null, url  VARCHAR(255) not null, primary
 movie存放电影的基本信息，play存放电影资源，如bt种子连接、磁力链、在线播放链接等。
 
 dna=md5(name)
-movie_type 从网上各大在线网站收集电影类型列表
 
 play_type主要三种
 0:表示磁力链(Magnet Link)

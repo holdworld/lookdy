@@ -41,7 +41,7 @@ class DoubanMovie(BaseSpider):
         movie = MovieItem()
 
         movie["name"]       = sel.xpath("//div[@id='content']/h1/span[1]/text()").extract()[0]
-        movie["dna"]        = md5( movie["name"].encode('utf-8') ).hexdigest()
+        movie["dna"]        = md5( movie["name"].encode("utf-8") ).hexdigest().decode("utf-8")
         movie["type"]       = sel.xpath("//div[@id='info']/span[@property='v:genre']/text()").extract()[0]
         movie["director"]  = sel.xpath("//div[@id='info']/span[1]/a/text()").extract()[0]
         movie["actor"]      = u",".join(sel.xpath("//div[@id='info']/span[3]/a/text()").extract())
@@ -54,16 +54,20 @@ class DoubanMovie(BaseSpider):
         except:
             pass
 
-        movie["show_time"]  = u",".join(sel.xpath("//div[@id='info']/span[@property='v:initialReleaseDate']/text()").extract())
-        movie["brief"]      = sel.xpath("//div[@class='related-info']/div[1]/span/text()").extract()[0].strip()
-        movie["url"]        = response.url
+        movie["time"]    = u",".join(sel.xpath("//div[@id='info']/span[@property='v:initialReleaseDate']/text()").extract())
+        movie["url"]     = response.url.decode('utf-8')
+
+        summaries    = sel.xpath("//span[@property='v:summary']/text()").extract()
+        movie["brief"] = summaries[0].strip()
+        for summary in summaries[1:]:
+            movie["brief"] = movie["brief"] + u"\n" + summary.strip()
 
         try:
             print movie["name"]
         except:
             pass
 
-        #return movie
+        return movie
 
     def parse_page(self, response):
         print(response.url)

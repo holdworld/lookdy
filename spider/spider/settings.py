@@ -20,6 +20,10 @@ NEWSPIDER_MODULE = 'spider.spiders'
 DOWNLOAD_DELAY = 2
 RANDOMIZE_DOWNLOAD_DELAY = True
 
+ITEM_PIPELINES = {
+	'spider.pipelines.MoviePipeline':300
+}
+
 DOWNLOADER_MIDDLEWARES = {
 	'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware':None,
 	'spider.fake_agent.FakeAgent':400
